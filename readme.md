@@ -1,6 +1,23 @@
 Source
 
-https://youtu.be/PtQiiknWUcI?si=ncZpnYS4eTqFEh36&t=3892
+https://youtu.be/PtQiiknWUcI?si=Jkes2ponZNYmdExO&t=7244
+
+
+- [x] Virtual Environment and setup
+- [x] Routes
+- [x] Templates
+- [x] Database and Models
+- [x] Crud Functionality
+- [ ] Authentication
+- [ ] User Registration
+- [ ] Profile Management
+- [ ] ChatRoom
+- [ ] Activity Feed
+- [ ] Static Files
+- [ ] Theme Installation
+- [ ] Mobile Responsive
+- [ ] Rest Framework
+  
 
 ### Setup
 * `pip install virtualenv`

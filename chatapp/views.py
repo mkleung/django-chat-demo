@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Room
+from .forms import RoomForm
 
 # Create your views here.
 
@@ -27,3 +28,32 @@ def room(request, pk):
     room = Room.objects.get(id=pk)
     context = {'room': room}
     return render(request, 'chatapp/room.html',  context) 
+
+
+def createRoom(request):
+
+    # Handle Form
+    if request.method == "POST":
+        form = RoomForm(request.POST)  # Pass POST data to the form
+        if form.is_valid():  # Check if the form is valid
+            form.save()  # Save the form data to the database
+            return redirect('home')  # Redirect to the home page after saving
+    else:
+        form = RoomForm()  
+
+    return render(request, "chatapp/room_form.html", {'form': form})
+
+
+def updateRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+
+    # Edits the form
+    if request.method == 'POST':
+        form = RoomForm(request.POST, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'chatapp/room_form.html', context)
