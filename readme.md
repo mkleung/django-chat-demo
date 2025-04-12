@@ -2,22 +2,23 @@ Source
 
 https://youtu.be/PtQiiknWUcI?si=ncZpnYS4eTqFEh36&t=3892
 
-
 ### Setup
-
+* `pip install virtualenv`
 * `pip install -r requirements.txt`
 * `env\Scripts\activate`
+
+### Run the server
 * `python manage.py runserver`
 
 
 ### Notes
 
-Project Structure
+**Project Structure**
 * Main is the one containing settings and can have many apps (chatapp)
 * Chatapp is a single individual app that contains templates.
 * The templates folder outside the main and chatapp contains views that are used by all apps
 
-Global Templates folder Setup
+**Global Templates folder Setup**
 * Create a template folder and add your htmls
 * Go to main > settings and add the templates folder
 ```TEMPLATES = [
@@ -26,6 +27,21 @@ Global Templates folder Setup
         'DIRS': [
             BASE_DIR / 'templates'
         ],
+    }
+]
 ```
 * Then go to chatapp > views.py and add the routes
 * When creating a templates folder inside chatapp, it must be the same name
+
+**Migrations**
+* `python manage.py makemigrations`  (similar to git commit)
+* `python manage.py migrate`    (similar to git push)
+
+
+To access the admin panel,
+* `python manage.py createsuperuser`
+* username: test
+* To see the new model created, go to chatapp > admin.py
+* Add this code 
+`from .models import Room
+admin.site.register(Room)`
