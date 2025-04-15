@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from .models import Room
 from .forms import RoomForm
@@ -57,3 +57,15 @@ def updateRoom(request, pk):
 
     context = {'form': form}
     return render(request, 'chatapp/room_form.html', context)
+
+
+def deleteRoom(request, pk):
+    deleteRoom = Room.objects.get(id=pk)
+
+    item = get_object_or_404(Room, id=pk)
+    item.delete()
+    
+    rooms = Room.objects.all()
+
+    context = {'deleteRoom' : deleteRoom, 'rooms': rooms}
+    return render(request, 'chatapp/home.html', context)
