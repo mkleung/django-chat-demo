@@ -2,7 +2,7 @@ Source
 
 https://youtu.be/PtQiiknWUcI?si=Jkes2ponZNYmdExO&t=7244
 
-
+To do
 - [x] Virtual Environment and setup
 - [x] Routes
 - [x] Templates
@@ -18,6 +18,11 @@ https://youtu.be/PtQiiknWUcI?si=Jkes2ponZNYmdExO&t=7244
 - [ ] Mobile Responsive
 - [ ] Rest Framework
   
+MVP
+* Chat feature
+* Chat rooms
+* connect to language translate api
+
 
 ### Setup
 * `pip install virtualenv`
@@ -53,7 +58,8 @@ https://youtu.be/PtQiiknWUcI?si=Jkes2ponZNYmdExO&t=7244
 **Migrations**
 * `python manage.py makemigrations`  (similar to git commit)
 * `python manage.py migrate`    (similar to git push)
-
+* `py manage.py shell`
+* Superuser: admin, pass: test
 
 To access the admin panel,
 * `python manage.py createsuperuser`
@@ -62,3 +68,4 @@ To access the admin panel,
 * Add this code 
 `from .models import Room
 admin.site.register(Room)`
+
