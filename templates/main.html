@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culturalchat</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chatapp/style.css' %}">
 </head>
 <body>
+   
     {% include 'navbar.html' %}
+
+    <p class="test">test</p>
+    
     {% block content %}
 
 
