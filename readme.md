@@ -8,6 +8,7 @@ To do
 - [x] Templates
 - [x] Database and Models
 - [x] Crud Functionality
+- [ ] Search
 - [ ] Authentication
 - [ ] User Registration
 - [ ] Profile Management
