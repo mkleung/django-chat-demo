@@ -118,8 +118,8 @@ def deleteMessage(request, pk):
 
     return render(request, 'chatapp/delete.html', {'obj': message})
 
-# Polls
 
+# Polls
 def polls(request):
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
     context = {"latest_question_list": latest_question_list}
@@ -203,3 +203,12 @@ def registerPage(request):
             messages.error(request, 'An error occurred during registration')
             
     return render(request, 'chatapp/login_register.html', {'form': form})
+
+
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all()
+    room_messages= user.message_set.all()
+    topics = Topic.objects.all()
+    context = {'user': user, 'rooms': rooms, 'room_messages': room_messages, 'topics': topics}
+    return render(request, 'chatapp/profile.html', context)

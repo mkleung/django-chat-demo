@@ -1,6 +1,6 @@
 Source
 
-https://youtu.be/PtQiiknWUcI?si=DG4SG6D-EPvJzd9K&t=10909
+https://youtu.be/PtQiiknWUcI?si=DwA1y19SqNvXb9FD&t=14400
 
 To do
 - [x] Virtual Environment and setup
@@ -13,9 +13,9 @@ To do
 - [x] Authentication
 - [x] User Registration
 - [x] Profile Management
-- [ ] ChatRoom
-- [ ] Activity Feed
-- [ ] Static Files
+- [x] ChatRoom
+- [x] Activity Feed
+- [x] Static Files (inside settings.py need to add configuration)
 - [ ] Theme Installation
 - [ ] Mobile Responsive
 - [ ] Rest Framework

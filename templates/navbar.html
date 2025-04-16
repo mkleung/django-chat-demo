@@ -5,7 +5,7 @@
 </a>
 
 <a href="{% url 'create-room' %}">Create Room</a> -->
-
+{% load static %}
 <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     <svg
@@ -22,6 +22,8 @@
     <span class="font-semibold text-xl tracking-tight">
       <a href="/">
         <h1>Home</h1>
+        <img src="{% static 'images/mike.webp' %}" alt="" style="width:50px; height:50px;">
+
       </a>
     </span>
   </div>
