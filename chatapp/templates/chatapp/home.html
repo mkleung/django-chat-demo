@@ -3,62 +3,27 @@
 <style>
   .home-container {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3fr 1fr;
   }
 </style>
 
 <div class="home-container">
   <div>
-    <h3>Browse Topics</h3>
-    <hr />
-    <div class="p-2">
-      <form action="{% url 'home' %}" method="GET" class="">
-        <input
-          type="text"
-          name="q"
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-          placeholder="Search rooms"
-        />
-      </form>
-    </div>
-
-    <div>
-      <a href="{% url 'home' %}">All</a>
-    </div>
-    {% for topic in topics %}
-    <div>
-      <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-    </div>
-    {% endfor %}
+    {% include 'chatapp/topics_component.html' %}
   </div>
 
   <!-- rooms -->
   <div>
     <h3>{{room_count}} rooms available</h3>
     <hr>
-    {% for room in rooms %}
-    <div>
-      <span>host: {{room.host.username}}</span>
-      <div class="font-bold">
-        {{room.id}} -
-        <a href="{% url 'room' room.id %}">Title: {{room.name}}</a>
-      </div>
-
-      <small>Topic: {{room.topic.name}}</small>
-      {% if request.user == room.host %}
-      <p>
-        <a href="{% url 'update-room' room.id %}">Edit</a> -
-        <a href="{% url 'delete-room' room.id %}">Delete</a>
-      </p>
-      {% endif %}
-      <hr />
-    </div>
-    {% endfor %}
+    
+    {% include 'chatapp/feed_component.html' %}
   </div>
 
-  {% if deleteRoom %}
-  <div>Room deleted: {{ deleteRoom }}</div>
-  {% endif %}
+ 
+  <div>
+    {% include 'chatapp/activity_component.html '%}
+  </div>
 </div>
 
 {% endblock %}

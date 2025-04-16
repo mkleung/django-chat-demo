@@ -19,6 +19,9 @@ class Room(models.Model):
     participants = models.ManyToManyField(User, related_name='participants', blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.name
@@ -32,6 +35,9 @@ class Message(models.Model):
     body = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.body[0:50]

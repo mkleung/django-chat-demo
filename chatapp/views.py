@@ -14,12 +14,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
-# rooms = [
-#     {'id': 1, 'name': 'Lets learn English'},
-#     {'id': 2, 'name': 'Lets learn Spanish'},
-#     {'id': 3, 'name': 'Lets learn French'},
-# ]
-
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -30,7 +24,11 @@ def home(request):
         )
     topics = Topic.objects.all()
     room_count = rooms.count()
-    context = {'rooms' : rooms, 'topics': topics, 'room_count': room_count}
+    
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
+    
+    
+    context = {'rooms' : rooms, 'topics': topics, 'room_count': room_count, 'room_messages': room_messages}
     return render(request, 'chatapp/home.html', context)
 
 
@@ -44,7 +42,7 @@ def room(request, pk):
     room = Room.objects.get(id=pk)
     
     # give me a list of messages that are related to this room
-    room_messages = room.message_set.all().order_by('-created')
+    room_messages = room.message_set.all()
     
     participants = room.participants.all()
     
