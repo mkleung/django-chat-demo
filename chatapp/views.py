@@ -6,6 +6,10 @@ from .models import Choice, Room, Question, Topic
 from .forms import RoomForm
 from django.template import loader
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -39,9 +43,8 @@ def room(request, pk):
     context = {'room': room}
     return render(request, 'chatapp/room.html',  context) 
 
-
+@login_required(login_url='login')
 def createRoom(request):
-
     # Handle Form
     if request.method == "POST":
         form = RoomForm(request.POST)  # Pass POST data to the form
@@ -53,10 +56,13 @@ def createRoom(request):
 
     return render(request, "chatapp/room_form.html", {'form': form})
 
-
+@login_required(login_url='login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
+    
+    if request.user != room.host :
+        return HttpResponse('You are not allowed on this page')
 
     # Edits the form
     if request.method == 'POST':
@@ -68,9 +74,12 @@ def updateRoom(request, pk):
     context = {'form': form}
     return render(request, 'chatapp/room_form.html', context)
 
-
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     deleteRoom = Room.objects.get(id=pk)
+    
+    if request.user != room.host :
+        return HttpResponse('You are not allowed on this page')
 
     item = get_object_or_404(Room, id=pk)
     item.delete()
@@ -81,7 +90,7 @@ def deleteRoom(request, pk):
     return render(request, 'chatapp/home.html', context)
 
 
-# Details
+# Polls
 
 def polls(request):
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -116,8 +125,34 @@ def vote(request, question_id):
         return render(request, "chatapp/poll/results.html", {"question": question})
     
     
-
-    
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, "chatapp/poll/results.html", {"question": question})
+
+
+
+# Authentication
+def loginPage(request):
+    
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'User does not exist')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Username or password does not exist')
+    context = {}
+    return render(request, 'chatapp/login_register.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')

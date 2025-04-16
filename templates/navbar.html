@@ -64,15 +64,25 @@
     </div>
 
     <div>
+
+      {% if request.user.is_authenticated %}
+      <span class="mr-5">Welcome, {{ request.user.username }}!</span>
       <a
-        href="#"
+        href="{% url 'logout' %}"
+        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+      >
+        Logout</a
+      >
+      {% else %}
+      <a
+        href="{% url 'login' %}"
         class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
       >
         Login</a
       >
+
+      {% endif %}
     </div>
-
-
   </div>
 </nav>
 
