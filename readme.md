@@ -1,17 +1,18 @@
 Source
 
-https://youtu.be/PtQiiknWUcI?si=Jkes2ponZNYmdExO&t=7244
+https://youtu.be/PtQiiknWUcI?si=DG4SG6D-EPvJzd9K&t=10909
 
 To do
 - [x] Virtual Environment and setup
 - [x] Routes
 - [x] Templates
 - [x] Database and Models
-- [x] Crud Functionality
-- [ ] Search
-- [ ] Authentication
-- [ ] User Registration
-- [ ] Profile Management
+- [x] Rooms Crud Functionality
+- [ ] Polls Crud Functionality
+- [x] Search Rooms
+- [x] Authentication
+- [x] User Registration
+- [x] Profile Management
 - [ ] ChatRoom
 - [ ] Activity Feed
 - [ ] Static Files
