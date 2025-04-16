@@ -39,10 +39,10 @@
     {% for room in rooms %}
     <div>
       <span>host: {{room.host.username}}</span>
-      <h5>
+      <div class="font-bold">
         {{room.id}} -
         <a href="{% url 'room' room.id %}">Title: {{room.name}}</a>
-      </h5>
+      </div>
 
       <small>Topic: {{room.topic.name}}</small>
       {% if request.user == room.host %}

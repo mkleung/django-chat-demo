@@ -2,7 +2,7 @@ from django.db.models import F
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import Choice, Room, Question, Topic
+from .models import Choice, Room, Question, Topic, Message
 from .forms import RoomForm
 from django.template import loader
 from django.db.models import Q
@@ -38,10 +38,26 @@ def about(request):
     return render(request, "chatapp/about.html")
 
 
+# Rooms
+
 def room(request, pk):
-    # return one single item. pk is primary key
     room = Room.objects.get(id=pk)
-    context = {'room': room}
+    
+    # give me a list of messages that are related to this room
+    room_messages = room.message_set.all().order_by('-created')
+    
+    participants = room.participants.all()
+    
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            body=request.POST.get('body')
+        )
+        room.participants.add(request.user)
+        return redirect('room', pk=room.id)
+    
+    context = {'room': room, 'room_messages': room_messages, 'participants': participants}
     return render(request, 'chatapp/room.html',  context) 
 
 @login_required(login_url='login')
@@ -90,6 +106,19 @@ def deleteRoom(request, pk):
     context = {'deleteRoom' : deleteRoom, 'rooms': rooms}
     return render(request, 'chatapp/home.html', context)
 
+
+@login_required(login_url='login')
+def deleteMessage(request, pk):
+    message = Message.objects.get(id=pk)
+    
+    if request.user != message.user :
+        return HttpResponse('You are not allowed on this page')
+
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+
+    return render(request, 'chatapp/delete.html', {'obj': message})
 
 # Polls
 
