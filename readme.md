@@ -27,9 +27,12 @@ MVP
 
 
 ### Setup
+* Download Django from [link](https://www.djangoproject.com/download/)
 * `pip install virtualenv`
+* `python3.13 -m venv env` (mac) or `python -m venv env` (windows)
+* `source env/bin/activate` (mac) or `env\Scripts\activate` (windows)
 * `pip install -r requirements.txt`
-* `env\Scripts\activate`
+* `deactivate`
 
 ### Run the server
 * `python manage.py runserver`
