@@ -1,6 +1,6 @@
 Source
 
-https://youtu.be/PtQiiknWUcI?si=DwA1y19SqNvXb9FD&t=14400
+https://youtu.be/PtQiiknWUcI?si=0ROF5V-2pY0gO_iv&t=23400
 
 To do
 - [x] Virtual Environment and setup
@@ -16,9 +16,8 @@ To do
 - [x] ChatRoom
 - [x] Activity Feed
 - [x] Static Files (inside settings.py need to add configuration)
-- [ ] Theme Installation
-- [ ] Mobile Responsive
-- [ ] Rest Framework
+- [x] API (Django Rest Framework)
+- [ ] Cors Configuration
   
 MVP
 * Chat feature
@@ -74,3 +73,51 @@ To access the admin panel,
 `from .models import Room
 admin.site.register(Room)`
 
+
+### Django Rest Framework
+* [Link](https://www.django-rest-framework.org/)
+* `pip install djangorestframework`
+* `pip install markdown`
+* `pip install django-filter`
+* main > settings.py
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
+
+### Cors
+
+* [Link](https://pypi.org/project/django-cors-headers/)
+* `python -m pip install django-cors-headers`
+* main > settings.py
+```
+INSTALLED_APPS = [
+    ...,
+    "corsheaders",
+    ...,
+]
+```
+
+* add the middleware in settings.py
+```
+MIDDLEWARE = [
+    ...,
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    ...,
+]
+```
+
+* Setup allowed urls in settings.py
+
+```
+CORS_ALLOWED_ORIGINS = True
+```
+
+
+Theme
+* https://www.builtatlightspeed.com/theme/pixelcave-dark-web-app-dashboard
+
+https://preline.co/templates.html
