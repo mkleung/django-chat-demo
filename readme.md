@@ -121,3 +121,74 @@ Theme
 * https://www.builtatlightspeed.com/theme/pixelcave-dark-web-app-dashboard
 
 https://preline.co/templates.html
+
+
+
+Tutorial 2
+
+### Virtual Environments
+* Virtual environments isolates the project dependencies and avoids conflicts with other versions of python
+
+Setup and activate Virtual Environment on Windows
+* Install python or check version `python --version`
+* `pip install virtualenv`
+* `mkdir project && cd project`
+* `python -m venv env` (create environment file)
+* `env\Scripts\activate` (activate environment file)
+* `env\Scripts\deactivate`
+
+Install django and generate requirements file
+* Note A django project can contain many apps
+* `pip install django`
+* `django-admin --version` (check version)
+* `pip freeze > requirements.txt`
+* `pip install -r requirements.txt` (When you or someone else wants to set up the project in the future, use this)
+
+Create project
+* `django-admin startproject demo` (creates project)
+* `cd demo`
+* `python manage.py startapp myapp` (creates app)
+
+Link the App and start server
+* Go to demo>settings.py and add "myapp" to the Installed_apps
+* `python manage.py runserver`
+
+
+Notes:
+* demo is a django project that contains settings, database migrations
+* Django App is a stand alone applicaton that contains views, database, templates and is portable
+* One app can be authentication. Another can be user admin, another to view content, etc
+* A django project can contain many django apps.
+
+
+### 1. Steps for adding route/template
+
+* Create a urls.py inside myapp and add a path `path("", views.home, name="home")`
+* Inside the main project: demo > urls.py, add the path `path('', include("myapp.urls")),`
+* Create templates inside the myapp folder. (base.html and home.html)
+* Inside myapp> views.py add
+
+```
+def home(request):
+    return render(request, "home.html")
+```
+
+### 2. Setup Database with ORM
+
+* Create a model inside the app>models.py
+* Register the model with the admin.py  (this allows models to appear in admin panel)
+* Make a migration. (a migration is an automated code that django will apply to db which allows you to change your models and update them)
+* `python manage.py makemigrations`
+* `python manage.py migrate`
+
+### 3. Update Views
+
+* create todos.html template inside app > templates 
+* Create a view inside view.py inside app > views.py
+* Create a url for the todos template inside app > urls.py 
+
+### 4. View the admin panel
+
+* `python manage.py createsuperuser`
+* username: test, email: test@test.com, password: test
+* Then go to [localhost](http://127.0.0.1:8000/admin)
