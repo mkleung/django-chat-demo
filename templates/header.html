@@ -1,0 +1,54 @@
+{% load static %}
+
+<!-- Header -->
+<!-- Background by https://myphotopack.com -->
+
+<!-- <div class="bg-image" style="background-image: url('images/avatar-000632.jpg');"> -->
+<div class="bg-image">
+  <div class="bg-image-overlay pt-5 py-md-5">
+    <header
+      class="container d-md-flex align-items-md-center justify-content-md-between py-4"
+    >
+      <div class="text-center text-md-start py-2">
+        <a
+          class="h5 text-white fw-bold d-flex align-items-center justify-content-center mb-0"
+          href=""
+        >
+          <i class="fa far fa-compass text-light me-2"></i> Dark Web App
+        </a>
+      </div>
+      <div class="text-center text-md-end py-2">
+        <div class="dropdown">
+          <button
+            class="btn btn-link"
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              class="avatar"
+              src="{% static 'images/avatar.jpg' %}"
+              alt="Admin Avatar"
+            />
+          </button>
+          <div
+            class="dropdown-menu dropdown-menu-end font-size-sm"
+            aria-labelledby="dropdownMenuButton"
+          >
+            <a class="dropdown-item" href="">Profile</a>
+            <a class="dropdown-item" href="">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">Projects</a>
+            <a class="dropdown-item" href="">Tasks</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<!-- END Header -->

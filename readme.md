@@ -1,7 +1,3 @@
-Source
-
-https://youtu.be/PtQiiknWUcI?si=0ROF5V-2pY0gO_iv&t=23400
-
 To do
 - [x] Virtual Environment and setup
 - [x] Routes
@@ -19,117 +15,8 @@ To do
 - [x] API (Django Rest Framework)
 - [ ] Cors Configuration
   
-MVP
-* Chat feature
-* Chat rooms
-* connect to language translate api
 
-
-### Setup
-* Download Django from [link](https://www.djangoproject.com/download/)
-* `pip install virtualenv`
-* `python3.13 -m venv env` (mac) or `python -m venv env` (windows)
-* `source env/bin/activate` (mac) or `env\Scripts\activate` (windows)
-* `pip install -r requirements.txt`
-* `deactivate`
-
-### Run the server
-* `python manage.py runserver`
-
-
-### Notes
-
-**Project Structure**
-* Main is the one containing settings and can have many apps (chatapp)
-* Chatapp is a single individual app that contains templates.
-* The templates folder outside the main and chatapp contains views that are used by all apps
-
-**Global Templates folder Setup**
-* Create a template folder and add your htmls
-* Go to main > settings and add the templates folder
-```TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'
-        ],
-    }
-]
-```
-* Then go to chatapp > views.py and add the routes
-* When creating a templates folder inside chatapp, it must be the same name
-
-**Migrations**
-* `python manage.py makemigrations`  (similar to git commit)
-* `python manage.py migrate`    (similar to git push)
-* `py manage.py shell`
-* Superuser: admin, pass: test
-
-To access the admin panel,
-* `python manage.py createsuperuser`
-* username: test
-* To see the new model created, go to chatapp > admin.py
-* Add this code 
-`from .models import Room
-admin.site.register(Room)`
-
-
-### Django Rest Framework
-* [Link](https://www.django-rest-framework.org/)
-* `pip install djangorestframework`
-* `pip install markdown`
-* `pip install django-filter`
-* main > settings.py
-```
-INSTALLED_APPS = [
-    ...
-    'rest_framework',
-]
-```
-
-### Cors
-
-* [Link](https://pypi.org/project/django-cors-headers/)
-* `python -m pip install django-cors-headers`
-* main > settings.py
-```
-INSTALLED_APPS = [
-    ...,
-    "corsheaders",
-    ...,
-]
-```
-
-* add the middleware in settings.py
-```
-MIDDLEWARE = [
-    ...,
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    ...,
-]
-```
-
-* Setup allowed urls in settings.py
-
-```
-CORS_ALLOWED_ORIGINS = True
-```
-
-
-Theme
-* https://www.builtatlightspeed.com/theme/pixelcave-dark-web-app-dashboard
-
-https://preline.co/templates.html
-
-
-
-Tutorial 2
-
-### Virtual Environments
-* Virtual environments isolates the project dependencies and avoids conflicts with other versions of python
-
-Setup and activate Virtual Environment on Windows
+### Setup Virtual Environments
 * Install python or check version `python --version`
 * `pip install virtualenv`
 * `mkdir project && cd project`
@@ -142,7 +29,7 @@ Install django and generate requirements file
 * `pip install django`
 * `django-admin --version` (check version)
 * `pip freeze > requirements.txt`
-* `pip install -r requirements.txt` (When you or someone else wants to set up the project in the future, use this)
+* `pip install -r requirements.txt` (use this if you are installing from requirements file)
 
 Create project
 * `django-admin startproject demo` (creates project)
@@ -152,13 +39,6 @@ Create project
 Link the App and start server
 * Go to demo>settings.py and add "myapp" to the Installed_apps
 * `python manage.py runserver`
-
-
-Notes:
-* demo is a django project that contains settings, database migrations
-* Django App is a stand alone applicaton that contains views, database, templates and is portable
-* One app can be authentication. Another can be user admin, another to view content, etc
-* A django project can contain many django apps.
 
 
 ### 1. Steps for adding route/template
@@ -192,3 +72,74 @@ def home(request):
 * `python manage.py createsuperuser`
 * username: test, email: test@test.com, password: test
 * Then go to [localhost](http://127.0.0.1:8000/admin)
+
+
+### 5. Global Templates folder Setup**
+* Create a template folder and add your htmls
+* Go to main > settings and add the templates folder
+```TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / 'templates'
+        ],
+    }
+]
+```
+* Then go to chatapp > views.py and add the routes
+* When creating a templates folder inside chatapp, it must be the same name
+
+
+
+### 6. Django Rest Framework
+* [Link](https://www.django-rest-framework.org/)
+* `pip install djangorestframework`
+* `pip install markdown`
+* `pip install django-filter`
+* main > settings.py
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
+
+### 7. Cors
+
+* [Link](https://pypi.org/project/django-cors-headers/)
+* `python -m pip install django-cors-headers`
+* main > settings.py
+```
+INSTALLED_APPS = [
+    ...,
+    "corsheaders",
+    ...,
+]
+```
+
+* add the middleware in settings.py
+```
+MIDDLEWARE = [
+    ...,
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    ...,
+]
+```
+
+* Setup allowed urls in settings.py
+
+```
+CORS_ALLOWED_ORIGINS = True
+```
+
+
+Themes
+* https://www.builtatlightspeed.com/theme/pixelcave-dark-web-app-dashboard
+* https://preline.co/templates.html
+
+
+
+Source
+
+https://youtu.be/PtQiiknWUcI?si=0ROF5V-2pY0gO_iv&t=23400
