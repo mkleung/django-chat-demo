@@ -2,7 +2,7 @@
 <div class="block">
   <div class="block-content bg-black-10">
     <h3 class="font-size-sm text-muted fw-bold text-uppercase mb-0">
-      Projects
+      Chatrooms
     </h3>
   </div>
   <div class="block-content">
@@ -23,7 +23,7 @@
           <tr>
             <td class="text-center">{{ room.id }}</td>
             <td>
-              <a href="">
+              <a href="{% url 'room' room.id %}">
                 <strong>{{room.name}}</strong>
               </a>
               <p

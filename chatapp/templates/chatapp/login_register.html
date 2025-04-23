@@ -1,39 +1,98 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
 
-{% block content %}
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <div class="block">
+        <div class="block-content">
+          {% if page == 'login' %}
+          <div>
+            <h3>Login</h3>
+            <form method="POST" action="">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Enter username"
+                  class="form-control"
+                  required
+                />
+              </div>
 
-{% if page == 'login' %}
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
+              <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Enter password"
+                  class="form-control"
+                  required
+                />
+              </div>
 
-        <label for="">Username:</label>
-        <input type="text" name="username" placeholder="Enter username" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-        
-        <label for="">Password:</label>
-        <input type="password" name="password" placeholder="Enter password" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+              <button type="submit" class="btn btn-success">Login</button>
+            </form>
 
-        <input type="submit" value="Login" />
-    </form>
+            <p class="mt-2">
+              <small>
+                Haven't signed up yet?
+                <a href="{% url 'register' %}">Sign up</a>
+              </small>
+            </p>
+          </div>
 
-    <p>Haven't signed up yet?</p>
-    <a href="{% url 'register' %}">Sign up</a>
+          {% else %}
+
+          <div>
+            <h3>Register</h3>
+            <!-- <form method="POST" action="">
+              {% csrf_token %} {{ form.as_p }}
+
+              <input type="submit" class="btn btn-success" value="Register" />
+            </form> -->
+
+            <form method="POST" action="">
+              {% csrf_token %}
+          
+              <div class="mb-3">
+                  <label for="username" class="form-label">Username:</label>
+                  <input type="text" name="username" id="username" class="form-control" required placeholder="Enter username" />
+              </div>
+          
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" name="email" id="email" class="form-control" required placeholder="Enter email" />
+              </div>
+          
+              <div class="mb-3">
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" name="password" id="password" class="form-control" required placeholder="Enter password" />
+              </div>
+          
+              <div class="mb-3">
+                  <label for="confirm_password" class="form-label">Confirm Password:</label>
+                  <input type="password" name="confirm_password" id="confirm_password" class="form-control" required placeholder="Confirm password" />
+              </div>
+          
+              <input type="submit" class="btn btn-success" value="Register" />
+          </form>
+
+            <p class="mt-2">
+              <small
+                >Already signed up yet?
+                <a href="{% url 'login' %}">Login</a></small
+              >
+            </p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-{% else %}
-
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <input type="submit" value="Register" />
-    </form>
-
-    <p>Already signed up yet?</p>
-    <a href="{% url 'login' %}">Login</a>
-</div>
-{% endif %}
 
 {% endblock content%}

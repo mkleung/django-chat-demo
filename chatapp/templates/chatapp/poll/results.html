@@ -1,16 +1,26 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
 
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <div class="block">
+        <div class="block-content">
+          <h1>{{ question.question_text }}</h1>
 
-{% block content %}
+          <ul>
+            {% for choice in question.choice_set.all %}
+            <li>
+              {{ choice.choice_text }} -- {{ choice.votes }} vote{{
+              choice.votes|pluralize }}
+            </li>
+            {% endfor %}
+          </ul>
 
-<h1>{{ question.question_text }}</h1>
-
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
-
-<a href="{% url 'detail' question.id %}">Vote again?</a>
+          <a href="{% url 'detail' question.id %}">Vote again?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

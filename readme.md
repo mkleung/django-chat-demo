@@ -13,7 +13,7 @@ To do
 - [x] Activity Feed
 - [x] Static Files (inside settings.py need to add configuration)
 - [x] API (Django Rest Framework)
-- [ ] Cors Configuration
+- [x] Cors Configuration
   
 
 ### Setup Virtual Environments

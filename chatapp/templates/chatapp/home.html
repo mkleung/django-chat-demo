@@ -6,6 +6,46 @@
       {% include 'chatapp/components/topics_component.html' %}
     </div>
     <div class="col-lg-8 col-xl-9">
+      <!-- Stats -->
+      <div class="row">
+        <div class="col-sm-6 col-lg-4">
+          <a class="block" href="{% url 'create-room' %}">
+            <div class="block-content block-content-full d-flex justify-content-center align-items-center">
+              <div class="py-2 text-center">
+                <div class="text-white font-size-lg fw-bold mb-2">Create Room</div>
+                <i class="fas fa-plus-circle text-white"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <a class="block" href="{% url 'polls' %}">
+            <div
+              class="block-content block-content-full d-flex justify-content-center align-items-center"
+            >
+              <div class="py-2 text-center">
+                <div class="text-white font-size-lg fw-bold mb-2">View Polls</div>
+                <i class="fas fa-poll text-white"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+          <a class="block" href="{% url 'about' %}">
+            <div
+              class="block-content block-content-full d-flex justify-content-center align-items-center"
+            >
+              <div class="py-2 text-center">
+                <div class="text-white font-size-lg fw-bold mb-2">About Page</div>
+                <i class="fas fa-address-card text-white"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- END Stats -->
+
       {% include 'chatapp/components/feed_component.html' %}
     </div>
   </div>
