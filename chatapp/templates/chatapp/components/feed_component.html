@@ -1,0 +1,84 @@
+<!-- Projects -->
+<div class="block">
+  <div class="block-content bg-black-10">
+    <h3 class="font-size-sm text-muted fw-bold text-uppercase mb-0">
+      Projects
+    </h3>
+  </div>
+  <div class="block-content">
+    <div class="table-responsive">
+      <table
+        class="table table-dark table-borderless table-striped table-vcenter font-size-sm mb-0"
+      >
+        <thead>
+          <tr>
+            <th class="text-center" style="width: 40px"></th>
+            <th>Name</th>
+            <th>Host</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for room in rooms %}
+          <tr>
+            <td class="text-center">{{ room.id }}</td>
+            <td>
+              <a href="">
+                <strong>{{room.name}}</strong>
+              </a>
+              <p
+                class="font-size-sm text-white-50 mb-0 d-none d-md-block"
+              >
+              <small>Topic: {{room.topic.name}}</small>
+              </p>
+            </td>
+            <td>
+              <span class="badge text-bg-success p-2">
+                <a href="{% url 'user-profile' room.host.id %}">{{room.host.username}}</a>
+              </span>
+            </td>
+            <td class="text-center">
+              <a class="btn btn-sm btn-link" href="javascript:void(0)">
+                <i class="fa fa-pencil-alt"></i>
+              </a>
+            
+              {% if request.user == room.host %}
+              <p>
+                <a href="{% url 'update-room' room.id %}"><i class="fa fa-pencil-alt"></i></a> -
+                <a href="{% url 'delete-room' room.id %}"><i class="fa fa-trash"></i></a>
+              </p>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="block-content bg-black-10">
+    <div class="row text-center">
+      <div class="col-sm-4 py-3">
+        <div class="text-muted mb-2 text-uppercase font-size-sm fw-bold">
+          Rooms Available
+        </div>
+        <div class="text-black font-size-lg fw-bold">{{room_count}}</div>
+      </div>
+      <div class="col-sm-4 py-3">
+        <div class="text-muted mb-2 text-uppercase font-size-sm fw-bold">
+          Users Online
+        </div>
+        <div class="text-black font-size-lg fw-bold">NA</div>
+      </div>
+      <div class="col-sm-4 py-3">
+        <div class="text-muted mb-2 text-uppercase font-size-sm fw-bold">
+          Activities
+        </div>
+        <div class="text-black font-size-lg fw-bold">NA</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END Projects -->
