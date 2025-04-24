@@ -8,11 +8,11 @@
   <div class="bg-image-overlay pt-5 py-md-5">
     <nav class="container navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="/">Cultural Chat</a>
+        <a class="navbar-brand text-white" href="/">Cultural Chat - Your Language Learning App</a>
 
         <div class="d-flex align-items-center">
           {% if request.user.is_authenticated %}
-          <span class="me-5">Welcome, {{ request.user.username }}!</span>
+          <span class="mr-5">Welcome, {{ request.user.username }}!</span>
           <a href="{% url 'logout' %}" class="btn btn-outline-light me-2">
             Logout
           </a>

@@ -21,15 +21,14 @@ To do
 * `pip install virtualenv`
 * `mkdir project && cd project`
 * `python -m venv env` (create environment file)
-* `env\Scripts\activate` (activate environment file)
-* `env\Scripts\deactivate`
+* `env\Scripts\activate` (activate environment file) or `source env/bin/activate` (mac)
+* `pip install -r requirements.txt` (use this if you are installing from requirements file)
 
 Install django and generate requirements file
 * Note A django project can contain many apps
 * `pip install django`
 * `django-admin --version` (check version)
 * `pip freeze > requirements.txt`
-* `pip install -r requirements.txt` (use this if you are installing from requirements file)
 
 Create project
 * `django-admin startproject demo` (creates project)
@@ -132,6 +131,57 @@ MIDDLEWARE = [
 ```
 CORS_ALLOWED_ORIGINS = True
 ```
+
+### Deployment to pythonanywhere
+
+**Bash**
+* https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
+* Git clone your repo
+* `$ mkvirtualenv --python=/usr/bin/python3.10 venv`
+* `pip install -r requirements.txt`
+
+**Create new app**
+* Add a new app under python anywhere
+* Select manual configuration
+* Under virtualenv section add `venv`
+
+**WSGI**
+* Edit the wsgi.py file
+```
+import os
+import sys
+path = '/home/mpakleung/django-chat-demo'
+if path not in sys.path:
+    sys.path.append(path)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'main.settings'
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+```
+**Domain name**
+Add this to settings.py
+```
+DEBUG = False
+
+ALLOWED_HOSTS = ['mpakleung.pythonanywhere.com']
+```
+
+**Static Files**
+* Add this to settings.py
+
+```
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+```
+* then run `python manage.py collectstatic`
+
+
+**Under configuration**
+Url: /static/
+Directory: /home/myuser/django-chat-demo/static
+
 
 
 Themes
