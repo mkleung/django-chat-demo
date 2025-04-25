@@ -7,7 +7,6 @@ To do
 - [x] Templates
 - [x] Database and Models
 - [x] Rooms Crud Functionality
-- [ ] Polls Crud Functionality
 - [x] Search Rooms
 - [x] Authentication
 - [x] User Registration

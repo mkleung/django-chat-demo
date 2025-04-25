@@ -8,8 +8,11 @@
   <div class="bg-image-overlay pt-5 py-md-5">
     <nav class="container navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="/">Cultural Chat - Your Language Learning App</a>
-
+        <a class="navbar-brand text-white" href="/">
+          <h2>💬 Cultural Chat App</h2>
+          <small>Your Gateway to Global Language Learning!</small>
+        </a>
+        
         <div class="d-flex align-items-center">
           {% if request.user.is_authenticated %}
           <span class="mr-5">Welcome, {{ request.user.username }}!</span>
