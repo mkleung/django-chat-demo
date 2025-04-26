@@ -45,8 +45,8 @@
           {% for room in rooms %}
           <tr>
             <td>
-              <a class="text-green" href="{% url 'room' room.id %}">
-                <strong>{{room.name}}</strong>
+              <a  href="{% url 'room' room.id %}">
+                <h5 >{{room.name}}</h5>
               </a>
               <p
                 class="font-size-sm text-white-50 mb-0 d-none d-md-block"
@@ -60,14 +60,16 @@
               </span>
             </td>
             <td class="text-center">
-      
-            
-              {% if request.user == room.host %}
+              
+             
               <p>
-                <a href="{% url 'update-room' room.id %}"><i class="fa fa-pencil-alt mr-2"></i></a>
-                <a href="{% url 'delete-room' room.id %}"><i class="fa fa-trash"></i></a>
+                <a href="{% url 'room' room.id %}"><i class="fa fa-solid fa-eye text-white mr-2"></i></a>
+                {% if request.user == room.host %}
+                <a href="{% url 'update-room' room.id %}"><i class="fa fa-pencil-alt mr-2 text-white"></i></a>
+                <a href="{% url 'delete-room' room.id %}"><i class="fa fa-trash text-white"></i></a>
+                {% endif %}
               </p>
-              {% endif %}
+              
             </td>
           </tr>
           {% endfor %}
