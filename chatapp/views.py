@@ -32,6 +32,7 @@ def home(request):
         'topics': topics, 
         'room_count': room_count, 
         'room_messages': room_messages,
+        'q': q,
         }
     return render(request, 'chatapp/home.html', context)
 

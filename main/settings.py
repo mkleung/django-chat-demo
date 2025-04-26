@@ -126,7 +126,8 @@ USE_TZ = True
 # Dev
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'static',
+    BASE_DIR / "chatapp/static",
 ]
 
 # Production
@@ -134,6 +135,7 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [
 #     BASE_DIR / 'static',
+#     BASE_DIR / "chatapp/static",
 # ]
 
 

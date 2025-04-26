@@ -1,9 +1,33 @@
 <!-- Projects -->
 <div class="block">
   <div class="block-content bg-black-10">
-    <h3 class="font-size-sm text-muted fw-bold text-uppercase mb-0">
-      Chatrooms 
-    </h3>
+
+    <div class="row">
+      <div class="col-lg-8  d-flex align-items-center pl-4">
+        <h3 class="font-size-lg text-muted fw-bold text-uppercase mb-0">
+          Chatrooms 
+          {% if q %}
+          ({{q}})
+          {% endif %}
+    
+        </h3>
+      </div>
+      <div class="col-lg-4">
+        <form action="{% url 'home' %}" method="GET" class="mb-2">
+          <input
+            type="text"
+            name="q"
+            class="form-control bg-black-10 search"
+            placeholder="Search rooms"
+          />
+        </form>
+      </div>
+    </div>
+
+
+
+
+
   </div>
   <div class="block-content">
     <div class="table-responsive">
@@ -21,7 +45,7 @@
           {% for room in rooms %}
           <tr>
             <td>
-              <a href="{% url 'room' room.id %}">
+              <a class="text-green" href="{% url 'room' room.id %}">
                 <strong>{{room.name}}</strong>
               </a>
               <p
@@ -31,8 +55,8 @@
               </p>
             </td>
             <td>
-              <span class="badge text-bg-success p-2">
-                <a href="{% url 'user-profile' room.host.id %}">{{room.host.username}}</a>
+              <span class="badge text-bg-success p-2 ">
+                <div class="text-green">{{room.host.username}}</div>
               </span>
             </td>
             <td class="text-center">
