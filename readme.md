@@ -136,18 +136,21 @@ CORS_ALLOWED_ORIGINS = True
 
 ### Deployment to pythonanywhere
 
-**Bash**
+**Skip 1-2 if you are updating**
+* To update, just `git pull origin main` and do steps 3 onwards
+
+**1. Bash**
 * https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
 * Git clone your repo
 * `$ mkvirtualenv --python=/usr/bin/python3.10 venv`
 * `pip install -r requirements.txt`
 
-**Create new app**
+**2. Create new app**
 * Add a new app under python anywhere
 * Select manual configuration
 * Under virtualenv section add `venv`
 
-**WSGI**
+**3. WSGI**
 * Edit the wsgi.py file
 ```
 import os
@@ -159,7 +162,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'main.settings'
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 ```
-**Domain name**
+**4. Domain name**
 Add this to settings.py
 ```
 DEBUG = False
@@ -167,7 +170,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['mpakleung.pythonanywhere.com']
 ```
 
-**Static Files**
+**5. Static Files**
 * Add this to settings.py
 
 ```
@@ -180,15 +183,11 @@ STATICFILES_DIRS = [
 * then run `python manage.py collectstatic`
 
 
-**Under configuration**
+**6. Under configuration**
 Url: /static/
 Directory: /home/myuser/django-chat-demo/static
 
 
-
-Themes
-* https://www.builtatlightspeed.com/theme/pixelcave-dark-web-app-dashboard
-* https://preline.co/templates.html
 
 
 
