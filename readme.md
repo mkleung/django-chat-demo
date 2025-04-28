@@ -185,12 +185,27 @@ STATICFILES_DIRS = [
 
 **6. Under configuration**
 Url: /static/
-Directory: /home/myuser/django-chat-demo/static
+Directory: /home/mpakleung/django-chat-demo/static
 
 
 
+### Whitenoise for static files
+* https://whitenoise.readthedocs.io/en/stable/django.html
+* `pip install whitenoise`
+* Add to settings.py
+```
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+```
+* Put whitenoise into requirements `pip freeze > requirements.txt`
 
 
-Source
+**Source**
 
 https://youtu.be/PtQiiknWUcI?si=0ROF5V-2pY0gO_iv&t=23400
